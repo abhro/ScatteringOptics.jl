@@ -14,3 +14,6 @@ DocumenterVitepress = "0.2"
 HDF5 = "0.17"
 StableRNGs = "1"
 VLBISkyModels = "0.6"
+
+[sources]
+ScatteringOptics = {path = ".."}
