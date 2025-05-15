@@ -28,16 +28,16 @@ D_\phi(r) = \langle [\phi(\vec{r}_0+\vec{r})-\phi(\vec{r}_0)]^2 \rangle
 ```
 
 In the average or ensemble-average regimes, diffractive scattering leads to the angular broadening of the source image, referred to as the "ensemble-average" image.
-The diffractively scattered (i.e., ensemble-average) image, $I_{ea}(\vec{r})$, is mathematically expressed as the convolution of the source image $I_{src}(\vec{r})$ with a blurring scattering kernel, $G(\vec{r})$.
+The diffractively scattered (i.e., ensemble-average) image, $I_{ea}(\vec{r})$, is mathematically expressed as the convolution of the source image $I_\text{src}(\vec{r})$ with a blurring scattering kernel, $G(\vec{r})$.
 
 ```math
-I_{ea}(\vec{r}) = I_{src}(\vec{r}) * G(\vec{r}).
+I_{ea}(\vec{r}) = I_\text{src}(\vec{r}) * G(\vec{r}).
 ```
 
-While the previous equation is defined in image space, `ScatteringOptics.jl` performs scattering in Fourier space, where the kernel can be described analytically. In radio interferometry, each set of measurements—called visibilities ($V_{obs}(\vec{b})$) obtained by a pair of antennas at different times and frequency segments, samples a Fourier component of the sky image $I_{sky}(\vec{r})$:
+While the previous equation is defined in image space, `ScatteringOptics.jl` performs scattering in Fourier space, where the kernel can be described analytically. In radio interferometry, each set of measurements—called visibilities ($V_\text{obs}(\vec{b})$) obtained by a pair of antennas at different times and frequency segments, samples a Fourier component of the sky image $I_\text{sky}(\vec{r})$:
 
 ```math
-V_{obs}(\vec{b}) = \int \int I_{sky}(\vec{r}) \exp(2\pi \frac{\vec{r}\cdot\vec{b}}{D\lambda}) \, d\vec{r},
+V_\text{obs}(\vec{b}) = \iint I_\text{sky}(\vec{r}) \exp\left(2\pi \frac{\vec{r}\cdot\vec{b}}{D\lambda}\right) \, d\vec{r},
 ```
 
 where $D$ is the Earth-screen distance and $\lambda$ is the observing wavelength.
@@ -48,7 +48,7 @@ Using this measurement equation, the source visibilities, $V_{src}(\vec{b})$, ar
 V_{ea}(\vec{b}) = V_{src}(\vec{b}) \exp \left[ -\frac{1}{2} D_\phi \left( \frac{\vec{b}}{1+M} \right) \right],
 ```
 
-in which $\vec{b}$ represents the baseline vector between observing stations. The magnification, $M = D / R$, is the ratio of the Earth-screen distance, $D$, to the screen-source distance, $R$. Since the Fourier transform of $I_{src}(\vec{r}) * G(\vec{r})$ is given by $V_{src}(\vec{r}) F[G(\vec{r})]$, you can see that the second exponential term corresponds to the Fourier coefficient of the convolving scattering kernel $G(\vec{r})$.
+in which $\vec{b}$ represents the baseline vector between observing stations. The magnification, $M = D / R$, is the ratio of the Earth-screen distance, $D$, to the screen-source distance, $R$. Since the Fourier transform of $I\text_{src}(\vec{r}) * G(\vec{r})$ is given by $V_\text{src}(\vec{r}) F[G(\vec{r})]$, you can see that the second exponential term corresponds to the Fourier coefficient of the convolving scattering kernel $G(\vec{r})$.
 
 The convolving kernel responsible for the angular broadening is described by the spatial structure function of the phase screen, $D_\phi(\vec{r})$, which is based on a probabilistic model of the phase screen, $\phi(\vec{r})$. In general, $D_\phi(\vec{r})$ is chromatic, meaning it depends on the observing frequency (or wavelength)—the kernel size in the image domain is typically proportional to the square of the observing wavelength, $\lambda^2$.
 
